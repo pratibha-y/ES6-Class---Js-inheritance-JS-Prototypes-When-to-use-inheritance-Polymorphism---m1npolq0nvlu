@@ -1,27 +1,43 @@
+module.exports = { API }
+
 class API{
-    #secure;
     url;
-    method;
     constructor(url){
         this.url=url;
-        if(url.includes("https"))
-        this.#secure=true;
-        else
-        this.#secure=false;
-        this.method="GET"
+        this.method='GET';
+    }
+    url(){
+       return this.url; 
+    }
+    method(){
+        return this.method;
+    }
+
+    #secure(){
+        if(this.url.indexOf("https://")==0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
     isSecure(){
-        return this.#secure;
+        if(this.#secure()){
+            return 'true';
+        }
+        else{
+            return 'false';
+        }
     }
+
     updateUrl(url){
-        this.url=url
-        if(url.includes("https"))
-        this.#secure=true;
-        else
-        this.#secure=false;
+        this.url=url;
     }
 }
 
-module.exports = { API }
-
-ES6 Class
+const s=new API('https://api. com/api/hello');
+console.log(s.method);
+console.log(s.isSecure());
+s.updateUrl('http://api. com/api/hello');
+console.log(s.isSecure())
+console.log(s.secure);
